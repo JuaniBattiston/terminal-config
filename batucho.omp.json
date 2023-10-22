@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#FABD2F",
+          "template": "{{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }} ",
+          "properties": {
+            "display_host": false
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#A89984",
+          "template": "➜ "
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#458588",
+          "template": ".\\{{ .Path }} ",
+          "properties": {
+            "style": "folder"
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#A89984",
+          "template": "➜"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "#8EC07C",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} <#62ED8B>➜</>"
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#83A598",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} <#A89984>➜</>",
+          "properties": {
+            "fetch_status": false
+          }
+        },
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "#FB4934",
+          "template": " \uf119{{ if gt .Code 0 }}\uf00d{{ else }}\uf42e{{ end }} <#62ED8B>➜</> "
+        }
+      ]
+    }
+  ]
+}
